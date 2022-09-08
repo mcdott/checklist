@@ -45,6 +45,22 @@ def list_all_items():
             
         index += 1
 
+# Create a class to be able to call the ANSI color codes
+class color:
+    red = '\033[31m'
+    green = '\033[32m'
+    orange = '\033[33m'
+    blue = '\033[34m'
+    purple = '\033[35m'
+    yellow = '\033[93m'
+    light_purple = "\033[1;35m"
+    
+# Mark an item as completed by adding '√' to the beginning of the 'item' string then updating the checklist list with this new string
+def mark_completed(index):
+    checked_item = "√" + checklist[index] 
+    update(index, checked_item)
+
+
 # Testing code
 def test():
     create("purple sox")
@@ -62,15 +78,7 @@ def test():
 
     list_all_items()
 
-# Create a class to be able to call the ANSI color codes
-class color:
-    red = '\033[31m'
-    green = '\033[32m'
-    orange = '\033[33m'
-    blue = '\033[34m'
-    purple = '\033[35m'
-    yellow = '\033[93m'
-    light_purple = "\033[1;35m"
+
 
 
 test()
