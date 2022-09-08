@@ -60,6 +60,41 @@ def mark_completed(index):
     checked_item = "√" + checklist[index] 
     update(index, checked_item)
 
+def user_input(prompt):
+    # the input function will display a message in the terminal
+    # and wait for user input.
+    user_input = input(prompt)
+    return user_input
+
+def select(function_code):
+
+    if function_code == "A":
+        #Create item in checklist
+        create(user_input("Add to list: "))
+
+    elif function_code == "R":
+        # Remove item from checklist
+        destroy(int(user_input("Which item to delete? ")))
+
+    elif function_code == "U":
+        index_to_update = int(user_input("Which item to update? "))
+        updated_item = user_input("What would you like to change it to? ")
+        update(index_to_update, updated_item)
+
+    elif function_code == "C":
+        mark_completed(int(user_input("Which item would you like to mark as completed? ")))
+
+    elif function_code == "P":
+        # Print all items 
+        list_all_items()
+
+    elif function_code == "Q":
+        # If the user chooses 'Q', 'False' will be returned, stopping the loop
+        return False
+    else:
+        #Catch all
+        print("Unknown Option")
+    return True
 
 # Testing code
 def test():
@@ -77,11 +112,27 @@ def test():
     print(read(1))
 
     list_all_items()
+    # Call your new function with the appropriate value
+    select("C")
+    # View the results
+    list_all_items()
+    # Call function with new value
+    select("R")
+    # View results
+    list_all_items()
+    # Continue until all code is run
 
-
+    user_value = user_input("Please Enter a value:")
+    print(user_value)
 
 
 test()
 
 
-# TODO left off at 4. Writing Helper Functions  @ 'mark_completed'
+running = True
+while running:
+    selection = user_input(
+        "Press A to add to list, R to remove, U to update item, C to mark as completed, P to show list, and Q to quit: ")
+    running = select(selection)
+
+# TODO start at "Finish things up"
