@@ -72,17 +72,10 @@ def select(function_code):
         #Create item in checklist
         create(user_input("Add to list: "))
 
-    elif function_code == "R":
-        # Remove item from checklist
-        destroy(int(user_input("Which item to delete? ")))
-
-    elif function_code == "U":
-        index_to_update = int(user_input("Which item to update? "))
-        updated_item = user_input("What would you like to change it to? ")
-        update(index_to_update, updated_item)
-
-    elif function_code == "C":
-        mark_completed(int(user_input("Which item would you like to mark as completed? ")))
+    # elif function_code == "U":
+    #     index_to_update = int(user_input("Which item to update? "))
+    #     updated_item = user_input("What would you like to change it to? ")
+    #     update(index_to_update, updated_item)
 
     elif function_code == "P":
         # Print all items 
@@ -122,17 +115,63 @@ def test():
     list_all_items()
     # Continue until all code is run
 
-    user_value = user_input("Please Enter a value:")
+    user_value = user_input("Please Enter a value: ")
     print(user_value)
 
 
 test()
 
 
+# running = True
+# while running:
+#     selection = user_input(
+#         "Press A to add to list, R to remove, U to update item, C to mark as completed, P to print list of items, and Q to quit: ").upper()
+#     running = select(selection)
+
 running = True
 while running:
     selection = user_input(
-        "Press A to add to list, R to remove, U to update item, C to mark as completed, P to show list, and Q to quit: ")
-    running = select(selection)
+        "Press A to add to list, R to remove, U to update item, C to mark as completed, P to print list of items, and Q to quit: ").upper()
+    
+    # For user selections that need to ask for an index value, check that the index value the user supplies is valid
+    if selection == 'R':
+        print("is good!")
+        while True:
+            # Check that the user has provided the index of an item that exists in the list
+            index_from_user = int(user_input("Which item to remove? "))
+            if index_from_user not in range(0, len(checklist)):
+                print("Please enter a valid index. ")
+                continue
+            else:
+                break
+        destroy(index_from_user)
+        running = True
 
-# TODO start at "Finish things up"
+    elif selection == 'C':
+        while True:
+            # Check that the user has provided the index of an item that exists in the list
+            index_from_user = int(user_input("Which item to mark as completed? "))
+            if index_from_user not in range(0, len(checklist)):
+                print("Please enter a valid index. ")
+                continue
+            else:
+                break
+        mark_completed(index_from_user)
+        running = True
+
+
+    elif selection == 'U':
+        while True:
+            # Check that the user has provided the index of an item that exists in the list
+            index_from_user = int(user_input("Which item to update? "))
+            if index_from_user not in range(0, len(checklist)):
+                print("Please enter a valid index. ")
+                continue
+            else:
+                break
+        updated_item = user_input("What would you like to change it to? ")
+        update(index_from_user, updated_item)
+        running = True
+
+    else:
+        running = select(selection)
