@@ -1,4 +1,5 @@
-
+import os
+from time import sleep
 
 checklist = list()
 
@@ -72,11 +73,6 @@ def select(function_code):
         #Create item in checklist
         create(user_input("Add to list: "))
 
-    # elif function_code == "U":
-    #     index_to_update = int(user_input("Which item to update? "))
-    #     updated_item = user_input("What would you like to change it to? ")
-    #     update(index_to_update, updated_item)
-
     elif function_code == "P":
         # Print all items 
         list_all_items()
@@ -122,20 +118,18 @@ def test():
 test()
 
 
-# running = True
-# while running:
-#     selection = user_input(
-#         "Press A to add to list, R to remove, U to update item, C to mark as completed, P to print list of items, and Q to quit: ").upper()
-#     running = select(selection)
-
 running = True
 while running:
+    # Wait 1.3 seconds, then clear the screen
+    sleep(1.3)
+    os.system('clear')
+    # Wait 0.5 seconds, then show the user prompt message
+    sleep(0.5)
     selection = user_input(
         "Press A to add to list, R to remove, U to update item, C to mark as completed, P to print list of items, and Q to quit: ").upper()
     
     # For user selections that need to ask for an index value, check that the index value the user supplies is valid
     if selection == 'R':
-        print("is good!")
         while True:
             # Check that the user has provided the index of an item that exists in the list
             index_from_user = int(user_input("Which item to remove? "))
