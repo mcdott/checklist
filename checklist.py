@@ -115,7 +115,7 @@ def test():
     print(user_value)
 
 
-test()
+# test()
 
 
 running = True
